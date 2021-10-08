@@ -4,13 +4,15 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+using StockPrices.DTOs;
+
 namespace StockPrices.Pages
 {
     public class IndexModel : PageModel
     {
         public ILogger<IndexModel> Logger { get; set; }
-        public List<int> AskPrice { get; private set; }
-        public List<int> BidPrice { get; private set; }
+        public List<int> AskPrices { get; private set; }
+        public List<int> BidPrices { get; private set; }
         private int MaxValueBid { get; set; } = 301;
         private int MaxValueAsk { get; set; } = 401;
 
@@ -22,8 +24,8 @@ namespace StockPrices.Pages
 
         public void OnGet()
         {
-            AskPrice = GenerateRandomNumbers(Symbols.Count(), MaxValueAsk);
-            BidPrice = GenerateRandomNumbers(Symbols.Count(), MaxValueBid);
+            AskPrices = GenerateRandomNumbers(Symbols.Count(), MaxValueAsk);
+            BidPrices = GenerateRandomNumbers(Symbols.Count(), MaxValueBid);
         }
 
         public List<int> GenerateRandomNumbers(int length, int maxValue)
