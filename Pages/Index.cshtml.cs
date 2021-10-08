@@ -11,8 +11,11 @@ namespace StockPrices.Pages
     public class IndexModel : PageModel
     {
         public ILogger<IndexModel> Logger { get; set; }
+        // public List<StockPriceDto> StockPrices { get; private set; }
         public List<int> AskPrices { get; private set; }
+
         public List<int> BidPrices { get; private set; }
+
         private int MaxValueBid { get; set; } = 301;
         private int MaxValueAsk { get; set; } = 401;
 
@@ -24,20 +27,30 @@ namespace StockPrices.Pages
 
         public void OnGet()
         {
+            //StockPrices = new List<StockPriceDto>();
             AskPrices = GenerateRandomNumbers(Symbols.Count(), MaxValueAsk);
             BidPrices = GenerateRandomNumbers(Symbols.Count(), MaxValueBid);
+
+
+            // for 
         }
 
         public List<int> GenerateRandomNumbers(int length, int maxValue)
         {
             var randomGenerator = new Random(0);
             var randomNumbers = new List<int>();
-            for (int i=0; i <= length; i++)
+            for (int i=0; i < length; i++)
             {
                 randomNumbers.Add(randomGenerator.Next(maxValue));
             }
             return randomNumbers;
         }
 
+        //public List<StockPriceDto> GenerateStocKPrices(int length, int maxValueBid, int maxValueAsk)
+        //{
+            //var askPrices = GenerateRandomNumbers(Symbols.Count(), MaxValueAsk);
+            //var bidPrices = GenerateRandomNumbers(Symbols.Count(), MaxValueBid);
+
+        //}
     }
 }

@@ -12,20 +12,13 @@
         <th>Bid</th>
         <th>Ask</th>
     </tr>
-    <tr>
-        <td><code>@Model.Symbols[0]</code></td>
-        <td><code>@Model.BidPrices[0]</code></td>
-        <td><code>@Model.AskPrices[0]</code></td>
-    </tr>
-    <tr>
-        <td><code>@Model.Symbols[1]</code></td>
-        <td><code>@Model.BidPrices[1]</code></td>
-        <td><code>@Model.AskPrices[1]</code></td>
-    </tr>
-    <tr>
-        <td><code>@Model.Symbols[2]</code></td>
-        <td><code>@Model.BidPrices[2]</code></td>
-        <td><code>@Model.AskPrices[2]</code></td>
-    </tr>
+    @for (int i = 0; i < Model.Symbols.Count(); i++)
+    {
+        <tr>
+            <td><code>@Model.Symbols[i]</code></td>
+            <td><code>@Model.BidPrices[i]</code></td>
+            <td><code>@Model.AskPrices[i]</code></td>
+        </tr>
+    }
 </table>
 </body>
