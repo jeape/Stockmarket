@@ -12,14 +12,13 @@ namespace StockPrices.Pages
     {
         public ILogger<IndexModel> Logger { get; set; }
         // public List<StockPriceDto> StockPrices { get; private set; }
-        public List<int> AskPrices { get; private set; }
+        public List<decimal> AskPrices { get; private set; }
 
-        public List<int> BidPrices { get; private set; }
+        public List<decimal> BidPrices { get; private set; }
 
-        private int MaxValueBid { get; set; } = 301;
-        private int MaxValueAsk { get; set; } = 401;
+        private int MaxValue { get; set; } = 3001;
 
-        public List<string> Symbols { get; private set; } = new List<string> { "AAPL", "IBM", "MSFT" };
+        public List<string> Symbols { get; private set; } = new List<string> { "AAPL", "IBM", "MSFT", "TSLA", "AMC", "AMZN", "GME" };
         public IndexModel(ILogger<IndexModel> logger)
         {
             Logger = logger;
@@ -28,20 +27,21 @@ namespace StockPrices.Pages
         public void OnGet()
         {
             //StockPrices = new List<StockPriceDto>();
-            AskPrices = GenerateRandomNumbers(Symbols.Count(), MaxValueAsk);
-            BidPrices = GenerateRandomNumbers(Symbols.Count(), MaxValueBid);
+
+            AskPrices = GenerateRandomNumbers(Symbols.Count(), MaxValue);
+            BidPrices = GenerateRandomNumbers(Symbols.Count(), MaxValue);
 
 
             // for 
         }
 
-        public List<int> GenerateRandomNumbers(int length, int maxValue)
+        public List<decimal> GenerateRandomNumbers(int length, int maxValue)
         {
-            var randomGenerator = new Random(0);
-            var randomNumbers = new List<int>();
+            var randomGenerator = new Random();
+            var randomNumbers = new List<decimal>();
             for (int i=0; i < length; i++)
             {
-                randomNumbers.Add(randomGenerator.Next(maxValue));
+                randomNumbers.Add(randomGenerator.Next(maxValue)*1.00M);
             }
             return randomNumbers;
         }
