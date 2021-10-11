@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StockPrices.DTOs
+namespace StockPrices.Domain.DTOs
 {
     public class StockPriceDto
     {

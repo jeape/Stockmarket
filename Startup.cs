@@ -19,7 +19,7 @@ namespace StockPrices
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-            services.AddTransient<Interfaces.IStockPrices, Application.StockPrices>();
+            services.AddTransient<Domain.Interfaces.IStockPrices, Application.StockPrices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

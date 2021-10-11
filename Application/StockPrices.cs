@@ -1,5 +1,5 @@
-﻿using StockPrices.DTOs;
-using StockPrices.Interfaces;
+﻿using StockPrices.Domain.DTOs;
+using StockPrices.Domain.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;

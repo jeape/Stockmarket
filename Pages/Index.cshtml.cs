@@ -2,8 +2,8 @@
 using Microsoft.Extensions.Logging;
 using System.Collections.Generic;
 
-using StockPrices.DTOs;
-using StockPrices.Interfaces;
+using StockPrices.Domain.DTOs;
+using StockPrices.Domain.Interfaces;
 
 namespace StockPrices.Pages
 {

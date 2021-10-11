@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace StockPrices.Interfaces
+namespace StockPrices.Domain.Interfaces
 {
     public interface IStockPrices
     {
