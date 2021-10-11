@@ -11,14 +11,12 @@ namespace StockPrices.Pages
     public class IndexModel : PageModel
     {
         public ILogger<IndexModel> Logger { get; set; }
-        // public List<StockPriceDto> StockPrices { get; private set; }
-        public List<decimal> AskPrices { get; private set; }
-
-        public List<decimal> BidPrices { get; private set; }
+        
+        public List<StockPriceDto> StockPrices { get; private set; }
 
         private int MaxValue { get; set; } = 3001;
 
-        public List<string> Symbols { get; private set; } = new List<string> { "AAPL", "IBM", "MSFT", "TSLA", "AMC", "AMZN", "GME" };
+        public List<string> Symbols { get; set; } = new List<string> { "AAPL", "IBM", "MSFT", "TSLA", "AMC", "AMZN", "GME" };
         public IndexModel(ILogger<IndexModel> logger)
         {
             Logger = logger;
@@ -26,13 +24,7 @@ namespace StockPrices.Pages
 
         public void OnGet()
         {
-            //StockPrices = new List<StockPriceDto>();
-
-            AskPrices = GenerateRandomNumbers(Symbols.Count(), MaxValue);
-            BidPrices = GenerateRandomNumbers(Symbols.Count(), MaxValue);
-
-
-            // for 
+            StockPrices = CreateList();
         }
 
         public List<decimal> GenerateRandomNumbers(int length, int maxValue)
@@ -46,11 +38,24 @@ namespace StockPrices.Pages
             return randomNumbers;
         }
 
-        //public List<StockPriceDto> GenerateStocKPrices(int length, int maxValueBid, int maxValueAsk)
-        //{
-            //var askPrices = GenerateRandomNumbers(Symbols.Count(), MaxValueAsk);
-            //var bidPrices = GenerateRandomNumbers(Symbols.Count(), MaxValueBid);
+        public StockPriceDto Create(string symbol)
+        {
+            var randomPrices = GenerateRandomNumbers(2, MaxValue);
+            var bidPrice = randomPrices.Min();
+            var askPrice = randomPrices.Max();
+            var stockPrice = new StockPriceDto(symbol, bidPrice, askPrice, DateTimeOffset.UtcNow);
+            return stockPrice;
+        }
 
-        //}
+        public List<StockPriceDto> CreateList()
+        {
+            StockPrices = new List<StockPriceDto>();
+            foreach (string symbol in Symbols)
+            {
+                var stockPrice = Create(symbol);
+                StockPrices.Add(stockPrice);
+            }
+            return StockPrices;
+        }
     }
 }

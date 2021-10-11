@@ -12,12 +12,12 @@
         <th>Bid</th>
         <th>Ask</th>
     </tr>
-    @for (int i = 0; i < Model.Symbols.Count(); i++)
+    @for (int i = 0; i < Model.StockPrices.Count(); i++)
     {
         <tr>
-            <td>@Model.Symbols[i]</td>
-            <td>@Model.BidPrices[i]</td>
-            <td>@Model.AskPrices[i]</td>
+            <td>@Model.StockPrices[i].Symbol</td>
+            <td>@Model.StockPrices[i].BidPrice</td>
+            <td>@Model.StockPrices[i].AskPrice</td>
         </tr>
     }
 </table>

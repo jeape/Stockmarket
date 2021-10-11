@@ -1,18 +1,23 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace StockPrices.DTOs
 {
     public class StockPriceDto
     {
-        public string Symbol { get; set; }
+        public StockPriceDto(string symbol, decimal bidPrice, decimal askPrice, DateTimeOffset transactionTime)
+        {
+            Symbol = symbol;
+            BidPrice = bidPrice;
+            AskPrice = askPrice;
+            TransactionTime = transactionTime;
+        }
+
+        public string Symbol { get; private set; }
         
-        public decimal BidPrice { get; set; }
+        public decimal BidPrice { get; private set; }
         
-        public decimal AskPrice { get; set; }
+        public decimal AskPrice { get; private set; }
         
-        public DateTimeOffset TransactionTime { get; set; }
+        public DateTimeOffset TransactionTime { get; private set; }
     }
 }
