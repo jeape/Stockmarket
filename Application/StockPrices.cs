@@ -1,8 +1,9 @@
-﻿using StockPrices.Domain.DTOs;
-using StockPrices.Domain.Interfaces;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+
+using StockPrices.Application.Models;
+using StockPrices.Domain.Interfaces;
 
 namespace StockPrices.Application
 {
@@ -28,6 +29,7 @@ namespace StockPrices.Application
             var bidPrice = randomPrices.Min();
             var askPrice = randomPrices.Max();
             var stockPrice = new StockPriceDto(symbol, bidPrice, askPrice, DateTimeOffset.UtcNow);
+
             return stockPrice;
         }
 

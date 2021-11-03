@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
 
+using StockPrices.Application.Models;
+
 namespace StockPrices.Domain.Interfaces
 {
     public interface IStockPrices
     {
-        List<DTOs.StockPriceDto> CreateList();
+        List<StockPriceDto> CreateList();
     }
 }

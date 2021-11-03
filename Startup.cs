@@ -1,8 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+
+using StockPrices.Application;
+using StockPrices.Application.Interfaces;
+using StockPrices.Infrastructure.Persistence;
 
 namespace StockPrices
 {
@@ -18,8 +23,13 @@ namespace StockPrices
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<StockPricesHandler>()
+                .AddScoped<Domain.Interfaces.IStockPrices, Application.StockPrices>()
+                .AddDbContext<StockPricesContext>(options =>
+      options.UseSqlServer(Configuration.GetConnectionString("GeneratedStockPricesContext")))
+                .AddScoped<IStockPricesContext>(provider => provider.GetService<StockPricesContext>());
+            
             services.AddRazorPages();
-            services.AddTransient<Domain.Interfaces.IStockPrices, Application.StockPrices>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace StockPrices.Domain.DTOs
+namespace StockPrices.Application.Models
 {
     public class StockPriceDto
     {
@@ -12,12 +12,13 @@ namespace StockPrices.Domain.DTOs
             TransactionTime = transactionTime;
         }
 
+        public int ID { get; private set; }
         public string Symbol { get; private set; }
-        
+
         public decimal BidPrice { get; private set; }
-        
+
         public decimal AskPrice { get; private set; }
-        
+
         public DateTimeOffset TransactionTime { get; private set; }
     }
 }

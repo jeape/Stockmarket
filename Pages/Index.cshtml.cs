@@ -1,29 +1,32 @@
-﻿using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Extensions.Logging;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 
-using StockPrices.Domain.DTOs;
-using StockPrices.Domain.Interfaces;
+using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.Extensions.Logging;
+
+using StockPrices.Application;
+using StockPrices.Application.Models;
 
 namespace StockPrices.Pages
 {
     public class IndexModel : PageModel
     {
         public ILogger<IndexModel> Logger { get; set; }
-        
-        private IStockPrices StockPrices { get; set; }
 
-        public List<StockPriceDto> StockPriceDtos { get; private set; }
+        public IList<StockPriceDto> StockPriceDtos { get; set; }
 
-        public IndexModel(ILogger<IndexModel> logger, IStockPrices stockPrices)
+        public StockPricesHandler StockPricesHandler { get; private set; }
+
+        public IndexModel(ILogger<IndexModel> logger, StockPricesHandler stockPricesHandler)
         {
             Logger = logger;
-            StockPrices = stockPrices;
+            StockPricesHandler = stockPricesHandler;
         }
 
-        public void OnGet()
+        public async Task OnGetAsync(CancellationToken cancellationToken)
         {
-            StockPriceDtos = StockPrices.CreateList();
+            StockPriceDtos = await StockPricesHandler.HandleStockPrices(cancellationToken);
         }
     }
 }
