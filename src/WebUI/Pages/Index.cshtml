@@ -8,23 +8,23 @@
     <h2>Stock Prices</h2>
     <table>
         <tr>
-            <th>Symbol</th>
-            <th>Bid</th>
-            <th>Ask</th>
-            <th>Transaction time</th>
-            <th>Id</th>
+            <th>@Html.DisplayNameFor(model => model.StockPriceDtos.FirstOrDefault().Symbol)</th>
+            <th>@Html.DisplayNameFor(model => model.StockPriceDtos.FirstOrDefault().BidPrice)</th>
+            <th>@Html.DisplayNameFor(model => model.StockPriceDtos.FirstOrDefault().AskPrice)</th>
+            <th>@Html.DisplayNameFor(model => model.StockPriceDtos.FirstOrDefault().TransactionTime)</th>
+            <th>@Html.DisplayNameFor(model => model.StockPriceDtos.FirstOrDefault().ID)</th>
         </tr>
-        @for (int i = 0; i < (Model.StockPriceDtos?.Count() ?? 0); i++)
+        @foreach (var item in Model.StockPriceDtos)
         {
             <tr>
-                <td>@Model.StockPriceDtos[i].Symbol</td>
-                <td>@Model.StockPriceDtos[i].BidPrice</td>
-                <td>@Model.StockPriceDtos[i].AskPrice</td>
-                <td>@Model.StockPriceDtos[i].TransactionTime</td>
-                <td>@Model.StockPriceDtos[i].ID</td>
+                <td>@Html.DisplayFor(modelItem => item.Symbol)</td>
+                <td>@Html.DisplayFor(modelItem => item.BidPrice)</td>
+                <td>@Html.DisplayFor(modelItem => item.AskPrice)</td>
+                <td>@Html.DisplayFor(modelItem => item.TransactionTime.LocalDateTime)</td>
+                <td>@Html.DisplayFor(modelItem => item.ID)</td>
             </tr>
-        }
-    </table>
+         }
+</table>
     <script src="js/site.js" asp-append-version="true"></script>
     <script type='text/javascript'>
         RefreshPageEveryFiveSeconds();

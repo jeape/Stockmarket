@@ -1,4 +1,6 @@
 ﻿using System;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace StockMarket.Domain.Entities
 {
@@ -11,14 +13,17 @@ namespace StockMarket.Domain.Entities
             AskPrice = askPrice;
             TransactionTime = transactionTime;
         }
-
+        [DisplayName("Id")]
         public int ID { get; private set; }
         public string Symbol { get; private set; }
 
+        [DisplayName("Bid")]
         public decimal BidPrice { get; private set; }
 
+        [DisplayName("Ask")]
         public decimal AskPrice { get; private set; }
 
-        public DateTimeOffset TransactionTime { get; private set; }
+        [DisplayName("Transaction time")]
+        public DateTimeOffset TransactionTime { get; set; }
     }
 }

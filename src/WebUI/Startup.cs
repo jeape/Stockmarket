@@ -25,6 +25,7 @@ namespace StockMarket.WebUI
         {
             services.AddScoped<StockPricesHandler>()
                 .AddScoped<Domain.Interfaces.IStockPrices, Application.StockPrices>()
+                .AddScoped<Format>()
                 .AddDbContext<StockPricesContext>(options =>
       options.UseSqlServer(Configuration.GetConnectionString("StockPricesContext")))
                 .AddScoped<IStockPricesContext>(provider => provider.GetService<StockPricesContext>());
